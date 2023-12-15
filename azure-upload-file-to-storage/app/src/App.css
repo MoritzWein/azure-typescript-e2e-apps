@@ -12,9 +12,11 @@
 }
 
 button {
-    border: 1px solid blue;
-    border-radius: 5%;
-    background-color: lightblue;
+    background: #C7AA74;
+    border-radius: 59px;
+    color: black;
+    position: relative;
+    font-size: 320px;
 }
 .select-file input {
 

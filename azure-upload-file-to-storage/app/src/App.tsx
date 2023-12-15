@@ -6,6 +6,7 @@ import { convertFileToArrayBuffer } from './lib/convert-file-to-arraybuffer';
 
 import axios, { AxiosResponse } from 'axios';
 import './App.css';
+import './AppStyles.css'; // Import the new CSS file
 
 // Used only for local development
 const API_SERVER = import.meta.env.VITE_API_SERVER as string;
@@ -120,101 +121,81 @@ function App() {
 
   return (
     <>
-      <ErrorBoundary>
-        <Box m={4}>
-          {/* App Title */}
-          <Typography variant="h4" gutterBottom>
-            Upload file to Azure Storage
-          </Typography>
-          <Typography variant="h5" gutterBottom>
-            with SAS token
-          </Typography>
-          <Typography variant="body1" gutterBottom>
-            <b>Container: {containerName}</b>
-          </Typography>
-
-          {/* File Selection Section */}
-          <Box
-            display="block"
-            justifyContent="left"
-            alignItems="left"
-            flexDirection="column"
-            my={4}
-          >
-            <Button variant="contained" component="label">
-              Select File
-              <input type="file" hidden onChange={handleFileSelection} />
-            </Button>
-            {selectedFile && selectedFile.name && (
-              <Box my={2}>
-                <Typography variant="body2">{selectedFile.name}</Typography>
-              </Box>
-            )}
+      <Box className="appContainer">
+        <ErrorBoundary>
+          <Box className="header" m={4}>
+              <Typography className="title" variant="h4" gutterBottom>
+                COMPLETE THE OUTFIT
+              </Typography>
+              {/* ... rest of your components */}
           </Box>
 
-          {/* SAS Token Section */}
-          {selectedFile && selectedFile.name && (
-            <Box
-              display="block"
-              justifyContent="left"
-              alignItems="left"
-              flexDirection="column"
-              my={4}
-            >
-              <Button variant="contained" onClick={handleFileSasToken}>
-                Get SAS Token
-              </Button>
-              {sasTokenUrl && (
-                <Box my={2}>
-                  <Typography variant="body2">{sasTokenUrl}</Typography>
-                </Box>
-              )}
-            </Box>
-          )}
+            {/* File Selection Section */}
+            <Box className="contentContainer">
+              <Box className="buttonContainer">
+                <Button className="button" variant="contained" component="label">
+                  Select File
+                  <input type="file" hidden onChange={handleFileSelection} />
+                </Button>
+                {selectedFile && selectedFile.name && (
+                  <Box className="infoContainer">
+                    <Typography className="infoText">{selectedFile.name}</Typography>
+                  </Box>
+                )}
+              </Box>
 
-          {/* File Upload Section */}
-          {sasTokenUrl && (
-            <Box
-              display="block"
-              justifyContent="left"
-              alignItems="left"
-              flexDirection="column"
-              my={4}
-            >
-              <Button variant="contained" onClick={handleFileUpload}>
-                Upload
-              </Button>
-              {uploadStatus && (
-                <Box my={2}>
-                  <Typography variant="body2" gutterBottom>
-                    {uploadStatus}
-                  </Typography>
-                </Box>
-              )}
-            </Box>
-          )}
-
-          {/* Uploaded Files Display */}
-          <Grid container spacing={2}>
-            {list.map((item) => (
-              <Grid item xs={6} sm={4} md={3} key={item}>
-                <Card>
-                  {item.endsWith('.jpg') ||
-                  item.endsWith('.png') ||
-                  item.endsWith('.jpeg') ||
-                  item.endsWith('.gif') ? (
-                    <CardMedia component="img" image={item} alt={item} />
-                  ) : (
-                    <Typography variant="body1" gutterBottom>
-                      {item}
-                    </Typography>
+              {/* SAS Token Section */}
+              {selectedFile && selectedFile.name && (
+                <Box className="buttonContainer">
+                  <Button className="button" variant="contained" onClick={handleFileSasToken}>
+                    Get Token to start
+                  </Button>
+                  {sasTokenUrl && (
+                    <Box className="infoContainer">
+                      <Typography className="infoText">{sasTokenUrl}</Typography>
+                    </Box>
                   )}
-                </Card>
+                </Box>
+              )}
+
+              {/* File Upload Section */}
+              {sasTokenUrl && (
+                <Box className="buttonContainer">
+                  <Button className="button" variant="contained" onClick={handleFileUpload}>
+                    Start search
+                  </Button>
+                  {uploadStatus && (
+                    <Box className="infoContainer">
+                      <Typography className="infoText" gutterBottom>
+                        {uploadStatus}
+                      </Typography>
+                    </Box>
+                  )}
+                </Box>
+              )}
+
+              {/* Uploaded Files Display */}
+              <Grid container spacing={2}>
+                {list.map((item) => (
+                  <Grid item xs={6} sm={4} md={3} key={item}>
+                    <Card>
+                      {item.endsWith('.jpg') ||
+                      item.endsWith('.png') ||
+                      item.endsWith('.jpeg') ||
+                      item.endsWith('.gif') ? (
+                        <CardMedia component="img" image={item} alt={item} />
+                      ) : (
+                        <Typography variant="body1" gutterBottom>
+                          {item}
+                        </Typography>
+                      )}
+                    </Card>
+                  </Grid>
+                ))}
               </Grid>
-            ))}
-          </Grid>
-        </Box>
-      </ErrorBoundary>
+            </Box>
+        </ErrorBoundary>
+      </Box>
     </>
   );
 }

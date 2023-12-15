@@ -1,0 +1,68 @@
+/* Background for the entire app */
+.appContainer {
+    background: #D9D9D9;
+    min-height: 100vh; /* This ensures the background covers the whole viewport */
+}
+
+.header {
+    width: 100%;
+    background: rgba(30, 30, 30, 0.85);
+    display: flex;
+    justify-content: center;
+    align-items: center; /* Align items vertically */
+    padding: 16px 0; /* Adjust the padding as needed */
+}
+
+.title {
+    color: white;
+    font-family: 'Abril Fatface', sans-serif;
+}
+
+/* More specific styling for the button */
+.button {
+    background-color: #C7AA74 !important; /* override Material-UI styles */
+    border-radius: 120px;
+    color: black;
+    margin-top: 20px; /* Add margin on top for spacing */
+
+    /* Increase the size */
+    font-size: 1.25em; /* Adjust font size */
+    padding: 15px 30px; /* Adjust padding to scale the button */
+    /* Optionally, you can set width and height if needed */
+    height: 50px;
+    width: 200px;
+    text-align: center;
+}
+
+
+.infoContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+
+.contentContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+/* Styling for the buttons and info text */
+.buttonContainer, .infoContainer {
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.infoText {
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 30px;
+    background-color: #f0f0f0;
+    width: 80%;
+    text-align: center;
+}
